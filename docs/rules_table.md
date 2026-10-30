@@ -1,0 +1,165 @@
+# ScamShield PK rules (161)
+
+| ID | Layer | IF | THEN | CF | why |
+|---|---|---|---|---|---|
+| R01 | 1 | asks_otp AND claims_bank | credential_request | 0.95 | Banks never ask for OTPs over call/SMS |
+| R02 | 1 | asks_otp AND claims_wallet | credential_request | 0.95 | JazzCash/Easypaisa agents never ask for OTP on a call |
+| R03 | 1 | asks_otp AND unknown_sender | credential_request | 0.9 | An unknown number asking for OTP is a classic takeover move |
+| R04 | 1 | asks_pin_password | credential_request | 0.85 | PIN/password is never required to 'verify' you by a caller |
+| R05 | 1 | asks_cnic_card AND unknown_sender | credential_request | 0.8 | Strangers asking for CNIC copies are collecting identity data |
+| R06 | 1 | asks_cnic_card AND claims_govt | credential_request | 0.85 | Fake BISP/FIA messages harvest CNIC details |
+| R07 | 1 | asks_install_app AND claims_tech_support | remote_access_request | 0.9 | Fake tech support wants AnyDesk/TeamViewer to empty accounts |
+| R08 | 1 | asks_install_app AND claims_bank | remote_access_request | 0.9 | Banks do not ask you to install remote-control apps |
+| R09 | 1 | deadline AND threat_block_arrest | urgency_pressure | 0.85 | Deadline plus arrest/block threats is fear-based social engineering |
+| R10 | 1 | deadline | urgency_pressure | 0.5 | A short deadline is used to stop you thinking |
+| R11 | 1 | threat_block_arrest AND claims_bank | urgency_pressure | 0.8 | Fake bank 'your account will be blocked' calls |
+| R12 | 1 | threat_block_arrest AND claims_govt | urgency_pressure | 0.85 | Fake FIA/FBR arrest threats are a known Pakistan scam |
+| R13 | 1 | secrecy_requested | secrecy_isolation | 0.8 | Scammers isolate the victim so family cannot warn them |
+| R14 | 1 | secrecy_requested AND claims_relative | secrecy_isolation | 0.9 | 'Don't tell anyone' plus a fake relative is a family-emergency pattern |
+| R15 | 1 | claims_bank AND unknown_sender | impersonation | 0.8 | A real bank would contact you from known channels, not a random number |
+| R16 | 1 | claims_wallet AND unknown_sender | impersonation | 0.8 | Wallet companies do not cold-call from unknown numbers for OTP |
+| R17 | 1 | claims_govt AND unknown_sender | impersonation | 0.85 | Government offices do not send random SMS asking for data |
+| R18 | 1 | claims_courier AND unknown_sender | impersonation | 0.7 | Courier 'duty unpaid' SMS often comes from spoofed senders |
+| R19 | 1 | claims_relative AND new_number_claim | impersonation | 0.9 | 'I lost my phone, new number' is a well-known WhatsApp scam |
+| R20 | 1 | claims_recruiter AND moves_to_whatsapp | impersonation | 0.6 | Fake recruiters move you off the platform onto WhatsApp |
+| R21 | 1 | claims_tech_support AND unknown_sender | impersonation | 0.8 | Microsoft/Jazz/PTCL do not cold-call from unknown numbers |
+| R22 | 1 | promises_prize | too_good | 0.85 | Unexpected prizes are almost never real |
+| R23 | 1 | promises_govt_money | too_good | 0.8 | Unexpected 'your BISP payment is ready' SMS is frequently fake |
+| R24 | 1 | promises_easy_job | too_good | 0.7 | Easy high-pay work-from-home offers are a common job-scam hook |
+| R25 | 1 | promises_loan_no_docs | too_good | 0.7 | A genuine loan always needs some documentation |
+| R26 | 1 | promises_guaranteed_returns | too_good | 0.9 | Guaranteed high returns violate how real investing works |
+| R27 | 1 | overpays_buyer | too_good | 0.8 | Overpaying then asking for a refund is a marketplace scam script |
+| R28 | 1 | asks_fee_upfront | payment_request | 0.8 | Upfront fees (registration, tax, release) are a scam cash-out |
+| R29 | 1 | asks_load_giftcard | payment_request | 0.9 | Gift cards are irreversible payment — a favourite of scammers |
+| R30 | 1 | asks_personal_account AND unknown_sender | payment_request | 0.8 | Sending money to a stranger's personal account is high risk |
+| R31 | 1 | asks_advance_marketplace AND channel_marketplace | payment_request | 0.7 | Advance payment before seeing the item is a marketplace red flag |
+| R32 | 1 | refuses_cod_meet AND channel_marketplace | payment_request | 0.7 | Refusing COD or meetup removes the safe way to trade |
+| R33 | 1 | asks_click_link AND link_shortened | suspicious_link | 0.75 | Short links hide the real destination |
+| R34 | 1 | asks_click_link AND link_domain_mismatch | suspicious_link | 0.9 | A lookalike domain is classic phishing |
+| R35 | 1 | asks_click_link AND poor_spelling | suspicious_link | 0.7 | Urgent link plus bad spelling is a cheap phishing kit |
+| R36 | 1 | asks_click_link AND unknown_sender | suspicious_link | 0.6 | Unexpected links from unknown senders should not be tapped |
+| R37 | 2 | credential_request AND claims_wallet | wallet_fraud | 0.92 | Secrets requested while posing as a wallet agent → wallet fraud |
+| R38 | 2 | credential_request AND claims_bank | bank_phishing | 0.92 | Secrets requested while posing as a bank → bank phishing |
+| R39 | 2 | suspicious_link AND claims_bank | bank_phishing | 0.85 | Fake bank link is phishing even without an OTP request |
+| R40 | 2 | impersonation AND claims_govt AND too_good | govt_aid_scam | 0.9 | Fake government identity plus a money promise → aid scam |
+| R41 | 2 | too_good AND payment_request AND claims_recruiter | job_scam | 0.95 | Easy job plus a fee is the recruitment-scam pattern |
+| R42 | 2 | promises_prize AND payment_request | prize_scam | 0.9 | Prize plus a fee/tax to release it is a lottery scam |
+| R43 | 2 | payment_request AND channel_marketplace | marketplace_scam | 0.85 | Payment tricks on a marketplace listing |
+| R44 | 2 | overpays_buyer AND channel_marketplace | marketplace_scam | 0.9 | OLX overpayment scam |
+| R45 | 2 | suspicious_link AND claims_courier | courier_phishing | 0.85 | Fake tracking link from a 'courier' |
+| R46 | 2 | impersonation AND secrecy_isolation AND payment_request | family_emergency_scam | 0.92 | Fake relative + secrecy + money request |
+| R47 | 2 | promises_guaranteed_returns AND payment_request | investment_scam | 0.9 | Guaranteed returns plus send money now |
+| R48 | 2 | remote_access_request | remote_access_scam | 0.95 | Remote-control request is itself the scam |
+| R49 | 2 | promises_loan_no_docs AND payment_request | loan_scam | 0.88 | Easy loan plus processing fee |
+| R50 | 2 | suspicious_link AND urgency_pressure | generic_phishing | 0.85 | Urgent 'click this link' with no clearer type → generic phishing |
+| R51 | 3 | scam_score>=0.85 | risk_critical | 1.0 | Highest scam-type confidence is 0.85 or above |
+| R52 | 3 | scam_score>=0.65 | risk_high | 1.0 | Highest scam-type confidence is 0.65 or above |
+| R53 | 3 | scam_score>=0.40 | risk_medium | 1.0 | Highest scam-type confidence is 0.40 or above |
+| R54 | 3 | scam_score>=0.0 | risk_low | 1.0 | No strong match (or no scam type fired) |
+| R55 | 4 | wallet_fraud | act_wallet_fraud | 1.0 | Advice for wallet fraud |
+| R56 | 4 | bank_phishing | act_bank_phishing | 1.0 | Advice for bank phishing |
+| R57 | 4 | govt_aid_scam | act_govt_aid_scam | 1.0 | Advice for government-aid scams |
+| R58 | 4 | job_scam | act_job_scam | 1.0 | Advice for job-fee scams |
+| R59 | 4 | prize_scam | act_prize_scam | 1.0 | Advice for prize scams |
+| R60 | 4 | marketplace_scam | act_marketplace_scam | 1.0 | Advice for marketplace scams |
+| R61 | 4 | courier_phishing | act_courier_phishing | 1.0 | Advice for courier phishing |
+| R62 | 4 | family_emergency_scam | act_family_emergency_scam | 1.0 | Advice for family-emergency scams |
+| R63 | 4 | investment_scam | act_investment_scam | 1.0 | Advice for investment scams |
+| R64 | 4 | remote_access_scam | act_remote_access_scam | 1.0 | Advice for remote-access scams |
+| R65 | 4 | loan_scam | act_loan_scam | 1.0 | Advice for loan scams |
+| R66 | 4 | generic_phishing | act_generic_phishing | 1.0 | Advice for generic phishing |
+| R67 | 4 | risk_critical | act_stop_and_report | 1.0 | Critical: stop and report |
+| R68 | 4 | risk_high | act_block_and_report | 1.0 | High: block and report |
+| R69 | 4 | risk_medium | act_verify_officially | 1.0 | Medium: verify officially |
+| R70 | 4 | risk_low | act_stay_cautious | 1.0 | Low: stay cautious |
+| R71 | 1 | asks_otp AND claims_govt | credential_request | 0.9 | Government SMS never needs your OTP |
+| R72 | 1 | asks_otp AND claims_courier | credential_request | 0.75 | Couriers do not need OTP to deliver a parcel |
+| R73 | 1 | asks_pin_password AND claims_wallet | credential_request | 0.95 | Wallet PIN requested by a 'agent' is a takeover attempt |
+| R74 | 1 | asks_pin_password AND claims_bank | credential_request | 0.95 | Bank PIN requested by a caller is a takeover attempt |
+| R75 | 1 | asks_cnic_card AND asks_click_link | credential_request | 0.75 | CNIC plus a link is identity-harvest phishing |
+| R76 | 1 | asks_install_app AND unknown_sender | remote_access_request | 0.8 | A stranger sending an APK/AnyDesk link is remote-access fraud |
+| R77 | 1 | asks_install_app AND channel_call | remote_access_request | 0.7 | Callers walking you through an install is a tech-support scam step |
+| R78 | 1 | deadline AND claims_wallet | urgency_pressure | 0.7 | Fake wallet agents rush you so you share OTP |
+| R79 | 1 | deadline AND claims_courier | urgency_pressure | 0.65 | Fake 'pay customs in 1 hour' courier SMS |
+| R80 | 1 | threat_block_arrest AND unknown_sender | urgency_pressure | 0.75 | Unknown number threatening arrest/block |
+| R81 | 1 | secrecy_requested AND asks_personal_account | secrecy_isolation | 0.85 | Secret money transfer is a family-emergency / romance pattern |
+| R82 | 1 | claims_relative AND unknown_sender | impersonation | 0.7 | A 'relative' texting from a number you do not know |
+| R83 | 1 | claims_govt AND promises_govt_money | impersonation | 0.75 | Unsolicited government payment claims are usually impersonation |
+| R84 | 1 | claims_tech_support AND channel_call | impersonation | 0.7 | Unsolicited 'tech support' calls are rarely genuine |
+| R85 | 1 | claims_recruiter AND promises_easy_job | impersonation | 0.65 | Recruiter plus 'easy job' is often a fake hiring page |
+| R86 | 1 | asks_fee_upfront AND promises_easy_job | payment_request | 0.85 | Job fee is the cash-out of a recruitment scam |
+| R87 | 1 | asks_fee_upfront AND promises_prize | payment_request | 0.85 | Prize-release fee is the cash-out of a lottery scam |
+| R88 | 1 | asks_fee_upfront AND promises_guaranteed_returns | payment_request | 0.9 | Investment 'entry fee' is the cash-out of a returns scam |
+| R89 | 1 | asks_click_link AND claims_govt | suspicious_link | 0.8 | Government bodies do not send random action links by SMS |
+| R90 | 1 | asks_click_link AND claims_wallet | suspicious_link | 0.75 | Wallet 'KYC update' links in SMS are often fake |
+| R91 | 1 | link_shortened AND claims_courier | suspicious_link | 0.7 | Short courier tracking links hide phishing sites |
+| R92 | 1 | poor_spelling AND claims_courier | suspicious_link | 0.65 | Broken English 'pakage pending' SMS is a phishing kit |
+| R93 | 1 | unknown_sender AND channel_call | unsolicited_contact | 0.7 | Unknown incoming call — treat as unsolicited |
+| R94 | 1 | unknown_sender AND channel_sms | unsolicited_contact | 0.7 | Unknown SMS — treat as unsolicited |
+| R95 | 1 | unknown_sender AND channel_whatsapp | unsolicited_contact | 0.6 | Unknown WhatsApp — treat as unsolicited |
+| R96 | 1 | unknown_sender AND channel_email | unsolicited_contact | 0.7 | Unknown email — treat as unsolicited |
+| R97 | 1 | threat_block_arrest AND claims_govt | fake_authority | 0.9 | Fake FIA/police legal threat |
+| R98 | 1 | threat_block_arrest AND claims_bank | fake_authority | 0.85 | Fake bank legal/block threat |
+| R99 | 1 | claims_wallet AND asks_otp AND channel_call | account_takeover | 0.9 | Wallet agent + OTP on a call is an account-takeover script |
+| R100 | 1 | claims_bank AND asks_otp AND channel_call | account_takeover | 0.9 | Bank agent + OTP on a call is an account-takeover script |
+| R101 | 2 | credential_request AND urgency_pressure AND claims_wallet | wallet_fraud | 0.95 | OTP pressure from a fake wallet agent (stronger wallet-fraud pattern) |
+| R102 | 2 | remote_access_request AND channel_call | remote_access_scam | 0.92 | Remote-access request during a call |
+| R103 | 2 | overpays_buyer AND too_good AND channel_marketplace | marketplace_scam | 0.92 | Overpay + marketplace channel (stronger OLX pattern) |
+| R104 | 2 | promises_loan_no_docs AND asks_fee_upfront | loan_scam | 0.85 | No-document loan plus a processing fee |
+| R105 | 4 | credential_request | act_never_share_secrets | 1.0 | Never share OTP/PIN/CNIC regardless of scam type |
+| R106 | 4 | remote_access_request | act_dont_install | 1.0 | Do not install remote-access software |
+| R107 | 4 | suspicious_link | act_dont_click | 1.0 | Do not tap the unexpected link |
+| R108 | 4 | impersonation | act_verify_identity | 1.0 | Verify the person/organisation on a number you already have |
+| R109 | 4 | unsolicited_contact | act_hang_up_unknown | 1.0 | Unsolicited contact: you can ignore and verify later |
+| R110 | 4 | account_takeover | act_freeze_wallet | 1.0 | If OTP was shared, freeze the wallet/bank account now |
+| R111 | 4 | no_matching_rule | act_no_matching_rule | 1.0 | Knowledge gap: no scam-type rule matched these facts |
+| R112 | 1 | claims_utility AND unknown_sender | utility_impersonation | 0.8 | Utility companies do not cold-SMS from random numbers |
+| R113 | 1 | claims_utility AND promises_bill_waive | too_good | 0.85 | Nobody waives your electricity bill over SMS |
+| R114 | 1 | claims_utility AND asks_click_link | suspicious_link | 0.8 | Pay-bill SMS links are a common WAPDA/KE phishing kit |
+| R115 | 1 | claims_utility AND asks_otp | credential_request | 0.85 | A bill office never needs your wallet OTP |
+| R116 | 1 | asks_sim_puk | sim_swap_pressure | 0.9 | PUK/ICCID questions are the opening of a SIM-swap |
+| R117 | 1 | asks_sim_puk AND claims_govt | fake_authority | 0.85 | Fake PTA/FIA callers harvest SIM data to port the number |
+| R118 | 1 | asks_sim_puk AND unknown_sender | impersonation | 0.8 | A stranger asking for PUK is not your operator |
+| R119 | 1 | promises_crypto | crypto_lure | 0.9 | Guaranteed crypto profit is the hook |
+| R120 | 1 | promises_crypto AND asks_fee_upfront | payment_request | 0.9 | USDT 'entry' or 'gas fee' is the cash-out |
+| R121 | 1 | promises_crypto AND asks_personal_account | payment_request | 0.85 | Send-USDT-to-this-wallet is the cash-out |
+| R122 | 1 | claims_charity AND asks_personal_account | charity_pressure | 0.85 | Blast charity + personal JazzCash is a donation scam |
+| R123 | 1 | claims_charity AND deadline | urgency_pressure | 0.7 | Fake disaster appeals always say 'today only' |
+| R124 | 1 | claims_nadra AND unknown_sender | impersonation | 0.85 | NADRA does not WhatsApp you to unblock a CNIC |
+| R125 | 1 | claims_nadra AND asks_cnic_card | credential_request | 0.9 | Fake NADRA harvests CNIC photos |
+| R126 | 1 | claims_nadra AND asks_fee_upfront | payment_request | 0.85 | Fake NADRA 'unblock fee' |
+| R127 | 1 | claims_university AND asks_fee_upfront | payment_request | 0.85 | Admission/processing fee on WhatsApp is not how HEC works |
+| R128 | 1 | claims_university AND unknown_sender | impersonation | 0.75 | Universities do not offer seats from unknown numbers |
+| R129 | 1 | asks_share_screen | screen_share_request | 0.9 | Screen share lets them see OTPs as they arrive |
+| R130 | 1 | asks_share_screen AND claims_tech_support | remote_access_request | 0.88 | Tech support + screen share is remote-access fraud |
+| R131 | 1 | asks_apk_file | remote_access_request | 0.92 | A random APK is malware / a banking trojan |
+| R132 | 1 | asks_qr_pay | payment_request | 0.8 | A 'receive' QR is often a pay-QR in disguise |
+| R133 | 1 | asks_qr_pay AND claims_wallet | account_takeover | 0.75 | Wallet-agent QR tricks drain the account |
+| R134 | 1 | asks_qr_pay AND overpays_buyer | payment_request | 0.85 | OLX buyer sending a QR is a payment-direction scam |
+| R135 | 1 | asks_load_giftcard AND claims_tech_support | payment_request | 0.9 | Tech support + gift cards is a classic cash-out |
+| R136 | 1 | asks_personal_account AND claims_recruiter | payment_request | 0.8 | Salary/fee to a recruiter's personal account |
+| R137 | 1 | asks_click_link AND claims_tech_support | suspicious_link | 0.7 | Support links from a cold call are phishing |
+| R138 | 1 | asks_pin_password AND unknown_sender | credential_request | 0.9 | Stranger asking for PIN |
+| R139 | 1 | asks_cnic_card AND claims_courier | credential_request | 0.75 | Courier does not need a CNIC selfie to deliver |
+| R140 | 1 | link_domain_mismatch AND claims_wallet | suspicious_link | 0.85 | Lookalike JazzCash/Easypaisa domain |
+| R141 | 1 | channel_social AND unknown_sender | unsolicited_contact | 0.55 | Unknown social-media DM |
+| R142 | 2 | utility_impersonation AND suspicious_link | utility_phishing | 0.9 | Fake utility + bill-pay link |
+| R143 | 2 | utility_impersonation AND too_good | utility_phishing | 0.88 | Fake utility + bill-waive promise |
+| R144 | 2 | sim_swap_pressure | sim_swap_scam | 0.95 | Asking for PUK/porting data is itself the SIM-swap scam |
+| R145 | 2 | crypto_lure AND payment_request | crypto_scam | 0.95 | USDT profit plus send money now |
+| R146 | 2 | charity_pressure | charity_scam | 0.9 | Urgent charity plus a money ask is the donation-scam pattern |
+| R147 | 2 | impersonation AND claims_nadra AND payment_request | nadra_id_scam | 0.9 | Fake NADRA plus a fee |
+| R148 | 2 | impersonation AND claims_nadra AND credential_request | nadra_id_scam | 0.88 | Fake NADRA plus CNIC harvest |
+| R149 | 2 | claims_university AND payment_request | university_admission_scam | 0.88 | Fake admissions office plus a fee |
+| R150 | 2 | asks_qr_pay AND channel_marketplace | marketplace_scam | 0.8 | Marketplace QR-to-pay trick |
+| R151 | 2 | screen_share_request AND credential_request | remote_access_scam | 0.9 | Screen share while they ask for OTP |
+| R152 | 4 | utility_phishing | act_utility_phishing | 1.0 | Advice for utility-bill phishing |
+| R153 | 4 | sim_swap_scam | act_sim_swap_scam | 1.0 | Advice for SIM-swap |
+| R154 | 4 | crypto_scam | act_crypto_scam | 1.0 | Advice for crypto scams |
+| R155 | 4 | charity_scam | act_charity_scam | 1.0 | Advice for fake charity |
+| R156 | 4 | nadra_id_scam | act_nadra_id_scam | 1.0 | Advice for fake NADRA |
+| R157 | 4 | university_admission_scam | act_university_admission_scam | 1.0 | Advice for fake admissions |
+| R158 | 4 | asks_qr_pay | act_qr_caution | 1.0 | QR codes can reverse the payment direction |
+| R159 | 4 | sim_swap_pressure | act_sim_swap_scam | 1.0 | Stop sharing SIM data even before the type fires |
+| R160 | 4 | crypto_lure | act_crypto_scam | 1.0 | Crypto lure: do not send funds |
+| R161 | 4 | charity_pressure | act_charity_scam | 1.0 | Verify charity accounts officially |

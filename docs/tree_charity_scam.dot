@@ -1,0 +1,17 @@
+digraph G {
+rankdir=TB;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=10];
+edge [fontname=Helvetica, fontsize=9];
+graph [bgcolor=white];
+labelloc="t"; label="charity_scam";
+"asks_personal_account" [label="asks_personal_account", fillcolor="#d0ebff"];
+"charity_pressure" [label="charity_pressure", fillcolor="#fff3bf"];
+"charity_scam" [label="charity_scam", fillcolor="#ffd8a8"];
+"claims_charity" [label="claims_charity", fillcolor="#d0ebff"];
+{ rank=same; "claims_charity" "asks_personal_account" }
+{ rank=same; "charity_pressure" }
+{ rank=same; "charity_scam" }
+"charity_pressure" -> "charity_scam" [label="R146"];
+"claims_charity" -> "charity_pressure" [label="R122"];
+"asks_personal_account" -> "charity_pressure" [label="R122"];
+}

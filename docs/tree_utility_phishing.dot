@@ -1,0 +1,67 @@
+digraph G {
+rankdir=TB;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=10];
+edge [fontname=Helvetica, fontsize=9];
+graph [bgcolor=white];
+labelloc="t"; label="utility_phishing";
+"asks_click_link" [label="asks_click_link", fillcolor="#d0ebff"];
+"claims_courier" [label="claims_courier", fillcolor="#d0ebff"];
+"claims_govt" [label="claims_govt", fillcolor="#d0ebff"];
+"claims_tech_support" [label="claims_tech_support", fillcolor="#d0ebff"];
+"claims_utility" [label="claims_utility", fillcolor="#d0ebff"];
+"claims_wallet" [label="claims_wallet", fillcolor="#d0ebff"];
+"link_domain_mismatch" [label="link_domain_mismatch", fillcolor="#d0ebff"];
+"link_shortened" [label="link_shortened", fillcolor="#d0ebff"];
+"overpays_buyer" [label="overpays_buyer", fillcolor="#d0ebff"];
+"poor_spelling" [label="poor_spelling", fillcolor="#d0ebff"];
+"promises_bill_waive" [label="promises_bill_waive", fillcolor="#d0ebff"];
+"promises_easy_job" [label="promises_easy_job", fillcolor="#d0ebff"];
+"promises_govt_money" [label="promises_govt_money", fillcolor="#d0ebff"];
+"promises_guaranteed_returns" [label="promises_guaranteed_returns", fillcolor="#d0ebff"];
+"promises_loan_no_docs" [label="promises_loan_no_docs", fillcolor="#d0ebff"];
+"promises_prize" [label="promises_prize", fillcolor="#d0ebff"];
+"suspicious_link" [label="suspicious_link", fillcolor="#fff3bf"];
+"too_good" [label="too_good", fillcolor="#fff3bf"];
+"unknown_sender" [label="unknown_sender", fillcolor="#d0ebff"];
+"utility_impersonation" [label="utility_impersonation", fillcolor="#fff3bf"];
+"utility_phishing" [label="utility_phishing", fillcolor="#ffd8a8"];
+{ rank=same; "claims_utility" "promises_guaranteed_returns" "promises_loan_no_docs" "promises_easy_job" "asks_click_link" "promises_bill_waive" "claims_govt" "claims_courier" "promises_prize" "link_shortened" "overpays_buyer" "claims_wallet" "unknown_sender" "claims_tech_support" "poor_spelling" "link_domain_mismatch" "promises_govt_money" }
+{ rank=same; "suspicious_link" "too_good" "utility_impersonation" }
+{ rank=same; "utility_phishing" }
+"utility_impersonation" -> "utility_phishing" [label="R142"];
+"suspicious_link" -> "utility_phishing" [label="R142"];
+"utility_impersonation" -> "utility_phishing" [label="R143"];
+"too_good" -> "utility_phishing" [label="R143"];
+"promises_prize" -> "too_good" [label="R22"];
+"promises_govt_money" -> "too_good" [label="R23"];
+"promises_easy_job" -> "too_good" [label="R24"];
+"promises_loan_no_docs" -> "too_good" [label="R25"];
+"promises_guaranteed_returns" -> "too_good" [label="R26"];
+"overpays_buyer" -> "too_good" [label="R27"];
+"asks_click_link" -> "suspicious_link" [label="R33"];
+"link_shortened" -> "suspicious_link" [label="R33"];
+"asks_click_link" -> "suspicious_link" [label="R34"];
+"link_domain_mismatch" -> "suspicious_link" [label="R34"];
+"asks_click_link" -> "suspicious_link" [label="R35"];
+"poor_spelling" -> "suspicious_link" [label="R35"];
+"asks_click_link" -> "suspicious_link" [label="R36"];
+"unknown_sender" -> "suspicious_link" [label="R36"];
+"asks_click_link" -> "suspicious_link" [label="R89"];
+"claims_govt" -> "suspicious_link" [label="R89"];
+"asks_click_link" -> "suspicious_link" [label="R90"];
+"claims_wallet" -> "suspicious_link" [label="R90"];
+"link_shortened" -> "suspicious_link" [label="R91"];
+"claims_courier" -> "suspicious_link" [label="R91"];
+"poor_spelling" -> "suspicious_link" [label="R92"];
+"claims_courier" -> "suspicious_link" [label="R92"];
+"claims_utility" -> "utility_impersonation" [label="R112"];
+"unknown_sender" -> "utility_impersonation" [label="R112"];
+"claims_utility" -> "too_good" [label="R113"];
+"promises_bill_waive" -> "too_good" [label="R113"];
+"claims_utility" -> "suspicious_link" [label="R114"];
+"asks_click_link" -> "suspicious_link" [label="R114"];
+"asks_click_link" -> "suspicious_link" [label="R137"];
+"claims_tech_support" -> "suspicious_link" [label="R137"];
+"link_domain_mismatch" -> "suspicious_link" [label="R140"];
+"claims_wallet" -> "suspicious_link" [label="R140"];
+}

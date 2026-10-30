@@ -1,0 +1,62 @@
+digraph G {
+rankdir=TB;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=10];
+edge [fontname=Helvetica, fontsize=9];
+graph [bgcolor=white];
+labelloc="t"; label="crypto_scam";
+"asks_advance_marketplace" [label="asks_advance_marketplace", fillcolor="#d0ebff"];
+"asks_fee_upfront" [label="asks_fee_upfront", fillcolor="#d0ebff"];
+"asks_load_giftcard" [label="asks_load_giftcard", fillcolor="#d0ebff"];
+"asks_personal_account" [label="asks_personal_account", fillcolor="#d0ebff"];
+"asks_qr_pay" [label="asks_qr_pay", fillcolor="#d0ebff"];
+"channel_marketplace" [label="channel_marketplace", fillcolor="#d0ebff"];
+"claims_nadra" [label="claims_nadra", fillcolor="#d0ebff"];
+"claims_recruiter" [label="claims_recruiter", fillcolor="#d0ebff"];
+"claims_tech_support" [label="claims_tech_support", fillcolor="#d0ebff"];
+"claims_university" [label="claims_university", fillcolor="#d0ebff"];
+"crypto_lure" [label="crypto_lure", fillcolor="#fff3bf"];
+"crypto_scam" [label="crypto_scam", fillcolor="#ffd8a8"];
+"overpays_buyer" [label="overpays_buyer", fillcolor="#d0ebff"];
+"payment_request" [label="payment_request", fillcolor="#fff3bf"];
+"promises_crypto" [label="promises_crypto", fillcolor="#d0ebff"];
+"promises_easy_job" [label="promises_easy_job", fillcolor="#d0ebff"];
+"promises_guaranteed_returns" [label="promises_guaranteed_returns", fillcolor="#d0ebff"];
+"promises_prize" [label="promises_prize", fillcolor="#d0ebff"];
+"refuses_cod_meet" [label="refuses_cod_meet", fillcolor="#d0ebff"];
+"unknown_sender" [label="unknown_sender", fillcolor="#d0ebff"];
+{ rank=same; "asks_load_giftcard" "channel_marketplace" "claims_recruiter" "promises_guaranteed_returns" "promises_easy_job" "refuses_cod_meet" "promises_prize" "claims_university" "overpays_buyer" "asks_qr_pay" "asks_personal_account" "promises_crypto" "asks_advance_marketplace" "asks_fee_upfront" "unknown_sender" "claims_tech_support" "claims_nadra" }
+{ rank=same; "crypto_lure" "payment_request" }
+{ rank=same; "crypto_scam" }
+"crypto_lure" -> "crypto_scam" [label="R145"];
+"payment_request" -> "crypto_scam" [label="R145"];
+"asks_fee_upfront" -> "payment_request" [label="R28"];
+"asks_load_giftcard" -> "payment_request" [label="R29"];
+"asks_personal_account" -> "payment_request" [label="R30"];
+"unknown_sender" -> "payment_request" [label="R30"];
+"asks_advance_marketplace" -> "payment_request" [label="R31"];
+"channel_marketplace" -> "payment_request" [label="R31"];
+"refuses_cod_meet" -> "payment_request" [label="R32"];
+"channel_marketplace" -> "payment_request" [label="R32"];
+"asks_fee_upfront" -> "payment_request" [label="R86"];
+"promises_easy_job" -> "payment_request" [label="R86"];
+"asks_fee_upfront" -> "payment_request" [label="R87"];
+"promises_prize" -> "payment_request" [label="R87"];
+"asks_fee_upfront" -> "payment_request" [label="R88"];
+"promises_guaranteed_returns" -> "payment_request" [label="R88"];
+"promises_crypto" -> "crypto_lure" [label="R119"];
+"promises_crypto" -> "payment_request" [label="R120"];
+"asks_fee_upfront" -> "payment_request" [label="R120"];
+"promises_crypto" -> "payment_request" [label="R121"];
+"asks_personal_account" -> "payment_request" [label="R121"];
+"claims_nadra" -> "payment_request" [label="R126"];
+"asks_fee_upfront" -> "payment_request" [label="R126"];
+"claims_university" -> "payment_request" [label="R127"];
+"asks_fee_upfront" -> "payment_request" [label="R127"];
+"asks_qr_pay" -> "payment_request" [label="R132"];
+"asks_qr_pay" -> "payment_request" [label="R134"];
+"overpays_buyer" -> "payment_request" [label="R134"];
+"asks_load_giftcard" -> "payment_request" [label="R135"];
+"claims_tech_support" -> "payment_request" [label="R135"];
+"asks_personal_account" -> "payment_request" [label="R136"];
+"claims_recruiter" -> "payment_request" [label="R136"];
+}

@@ -1,0 +1,46 @@
+digraph G {
+rankdir=TB;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=10];
+edge [fontname=Helvetica, fontsize=9];
+graph [bgcolor=white];
+labelloc="t"; label="courier_phishing";
+"asks_click_link" [label="asks_click_link", fillcolor="#d0ebff"];
+"claims_courier" [label="claims_courier", fillcolor="#d0ebff"];
+"claims_govt" [label="claims_govt", fillcolor="#d0ebff"];
+"claims_tech_support" [label="claims_tech_support", fillcolor="#d0ebff"];
+"claims_utility" [label="claims_utility", fillcolor="#d0ebff"];
+"claims_wallet" [label="claims_wallet", fillcolor="#d0ebff"];
+"courier_phishing" [label="courier_phishing", fillcolor="#ffd8a8"];
+"link_domain_mismatch" [label="link_domain_mismatch", fillcolor="#d0ebff"];
+"link_shortened" [label="link_shortened", fillcolor="#d0ebff"];
+"poor_spelling" [label="poor_spelling", fillcolor="#d0ebff"];
+"suspicious_link" [label="suspicious_link", fillcolor="#fff3bf"];
+"unknown_sender" [label="unknown_sender", fillcolor="#d0ebff"];
+{ rank=same; "claims_utility" "unknown_sender" "claims_tech_support" "link_shortened" "claims_wallet" "poor_spelling" "link_domain_mismatch" "asks_click_link" "claims_govt" "claims_courier" }
+{ rank=same; "suspicious_link" }
+{ rank=same; "courier_phishing" }
+"suspicious_link" -> "courier_phishing" [label="R45"];
+"claims_courier" -> "courier_phishing" [label="R45"];
+"asks_click_link" -> "suspicious_link" [label="R89"];
+"claims_govt" -> "suspicious_link" [label="R89"];
+"asks_click_link" -> "suspicious_link" [label="R90"];
+"claims_wallet" -> "suspicious_link" [label="R90"];
+"link_shortened" -> "suspicious_link" [label="R91"];
+"claims_courier" -> "suspicious_link" [label="R91"];
+"poor_spelling" -> "suspicious_link" [label="R92"];
+"claims_courier" -> "suspicious_link" [label="R92"];
+"claims_utility" -> "suspicious_link" [label="R114"];
+"asks_click_link" -> "suspicious_link" [label="R114"];
+"asks_click_link" -> "suspicious_link" [label="R137"];
+"claims_tech_support" -> "suspicious_link" [label="R137"];
+"link_domain_mismatch" -> "suspicious_link" [label="R140"];
+"claims_wallet" -> "suspicious_link" [label="R140"];
+"asks_click_link" -> "suspicious_link" [label="R33"];
+"link_shortened" -> "suspicious_link" [label="R33"];
+"asks_click_link" -> "suspicious_link" [label="R34"];
+"link_domain_mismatch" -> "suspicious_link" [label="R34"];
+"asks_click_link" -> "suspicious_link" [label="R35"];
+"poor_spelling" -> "suspicious_link" [label="R35"];
+"asks_click_link" -> "suspicious_link" [label="R36"];
+"unknown_sender" -> "suspicious_link" [label="R36"];
+}

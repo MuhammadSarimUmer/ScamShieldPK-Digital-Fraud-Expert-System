@@ -1,0 +1,66 @@
+digraph G {
+rankdir=TB;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=10];
+edge [fontname=Helvetica, fontsize=9];
+graph [bgcolor=white];
+labelloc="t"; label="generic_phishing";
+"asks_click_link" [label="asks_click_link", fillcolor="#d0ebff"];
+"claims_bank" [label="claims_bank", fillcolor="#d0ebff"];
+"claims_charity" [label="claims_charity", fillcolor="#d0ebff"];
+"claims_courier" [label="claims_courier", fillcolor="#d0ebff"];
+"claims_govt" [label="claims_govt", fillcolor="#d0ebff"];
+"claims_tech_support" [label="claims_tech_support", fillcolor="#d0ebff"];
+"claims_utility" [label="claims_utility", fillcolor="#d0ebff"];
+"claims_wallet" [label="claims_wallet", fillcolor="#d0ebff"];
+"deadline" [label="deadline", fillcolor="#d0ebff"];
+"generic_phishing" [label="generic_phishing", fillcolor="#ffd8a8"];
+"link_domain_mismatch" [label="link_domain_mismatch", fillcolor="#d0ebff"];
+"link_shortened" [label="link_shortened", fillcolor="#d0ebff"];
+"poor_spelling" [label="poor_spelling", fillcolor="#d0ebff"];
+"suspicious_link" [label="suspicious_link", fillcolor="#fff3bf"];
+"threat_block_arrest" [label="threat_block_arrest", fillcolor="#d0ebff"];
+"unknown_sender" [label="unknown_sender", fillcolor="#d0ebff"];
+"urgency_pressure" [label="urgency_pressure", fillcolor="#fff3bf"];
+{ rank=same; "claims_utility" "unknown_sender" "claims_charity" "link_shortened" "claims_tech_support" "claims_wallet" "poor_spelling" "threat_block_arrest" "link_domain_mismatch" "deadline" "asks_click_link" "claims_govt" "claims_bank" "claims_courier" }
+{ rank=same; "suspicious_link" "urgency_pressure" }
+{ rank=same; "generic_phishing" }
+"suspicious_link" -> "generic_phishing" [label="R50"];
+"urgency_pressure" -> "generic_phishing" [label="R50"];
+"deadline" -> "urgency_pressure" [label="R78"];
+"claims_wallet" -> "urgency_pressure" [label="R78"];
+"deadline" -> "urgency_pressure" [label="R79"];
+"claims_courier" -> "urgency_pressure" [label="R79"];
+"threat_block_arrest" -> "urgency_pressure" [label="R80"];
+"unknown_sender" -> "urgency_pressure" [label="R80"];
+"asks_click_link" -> "suspicious_link" [label="R89"];
+"claims_govt" -> "suspicious_link" [label="R89"];
+"asks_click_link" -> "suspicious_link" [label="R90"];
+"claims_wallet" -> "suspicious_link" [label="R90"];
+"link_shortened" -> "suspicious_link" [label="R91"];
+"claims_courier" -> "suspicious_link" [label="R91"];
+"poor_spelling" -> "suspicious_link" [label="R92"];
+"claims_courier" -> "suspicious_link" [label="R92"];
+"claims_utility" -> "suspicious_link" [label="R114"];
+"asks_click_link" -> "suspicious_link" [label="R114"];
+"claims_charity" -> "urgency_pressure" [label="R123"];
+"deadline" -> "urgency_pressure" [label="R123"];
+"asks_click_link" -> "suspicious_link" [label="R137"];
+"claims_tech_support" -> "suspicious_link" [label="R137"];
+"link_domain_mismatch" -> "suspicious_link" [label="R140"];
+"claims_wallet" -> "suspicious_link" [label="R140"];
+"deadline" -> "urgency_pressure" [label="R09"];
+"threat_block_arrest" -> "urgency_pressure" [label="R09"];
+"deadline" -> "urgency_pressure" [label="R10"];
+"threat_block_arrest" -> "urgency_pressure" [label="R11"];
+"claims_bank" -> "urgency_pressure" [label="R11"];
+"threat_block_arrest" -> "urgency_pressure" [label="R12"];
+"claims_govt" -> "urgency_pressure" [label="R12"];
+"asks_click_link" -> "suspicious_link" [label="R33"];
+"link_shortened" -> "suspicious_link" [label="R33"];
+"asks_click_link" -> "suspicious_link" [label="R34"];
+"link_domain_mismatch" -> "suspicious_link" [label="R34"];
+"asks_click_link" -> "suspicious_link" [label="R35"];
+"poor_spelling" -> "suspicious_link" [label="R35"];
+"asks_click_link" -> "suspicious_link" [label="R36"];
+"unknown_sender" -> "suspicious_link" [label="R36"];
+}

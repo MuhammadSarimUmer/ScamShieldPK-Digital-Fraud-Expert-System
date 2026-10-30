@@ -1,0 +1,15 @@
+digraph G {
+rankdir=TB;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=10];
+edge [fontname=Helvetica, fontsize=9];
+graph [bgcolor=white];
+labelloc="t"; label="sim_swap_scam";
+"asks_sim_puk" [label="asks_sim_puk", fillcolor="#d0ebff"];
+"sim_swap_pressure" [label="sim_swap_pressure", fillcolor="#fff3bf"];
+"sim_swap_scam" [label="sim_swap_scam", fillcolor="#ffd8a8"];
+{ rank=same; "asks_sim_puk" }
+{ rank=same; "sim_swap_pressure" }
+{ rank=same; "sim_swap_scam" }
+"sim_swap_pressure" -> "sim_swap_scam" [label="R144"];
+"asks_sim_puk" -> "sim_swap_pressure" [label="R116"];
+}
